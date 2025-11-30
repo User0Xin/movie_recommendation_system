@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split
 
-from movie_recommendation_system.src.build_cf_predicts import get_all_user_top_k
+from src.build_cf_predicts import get_all_user_top_k
 
 
 def getTrueItem():

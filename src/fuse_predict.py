@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split
 
-from movie_recommendation_system.src.build_cf_predicts import get_item_cf
+from src.build_cf_predicts import get_item_cf
 
 
 def get_all_predictions(trainset):
