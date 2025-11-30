@@ -4,10 +4,13 @@ import pandas as pd
 from neo4j import GraphDatabase
 import utils
 from dotenv import load_dotenv
+
+from src.config import FILE_PATH
+
 load_dotenv()
 # 加载数据
-ratings = pd.read_csv(os.path.join(os.getenv('FILE_PATH'), "ratings.csv"))
-movies = pd.read_csv(os.path.join(os.getenv('FILE_PATH'), "movies.csv"))
+ratings = pd.read_csv(FILE_PATH / "ratings.csv")
+movies = pd.read_csv(FILE_PATH / "movies.csv")
 # 连接 Neo4j
 driver = utils.get_neo4j_graph_driver()
 

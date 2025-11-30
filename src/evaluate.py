@@ -9,13 +9,13 @@ from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split
 
 from src.build_cf_predicts import get_all_user_top_k
+from src.config import FILE_PATH
 
 
 def getTrueItem():
     load_dotenv()
     # # 1. Load  dataset
-    file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
-
+    file_path = FILE_PATH / "ratings.dat"
     # Movielens 1M format: UserID::MovieID::Rating::Timestamp
     reader = Reader(
         line_format='user item rating timestamp',

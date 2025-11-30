@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 from surprise import Reader, Dataset, KNNBaseline
 from surprise.model_selection import train_test_split
 
+from src.config import FILE_PATH
+
 item_cf = None
 
 
@@ -15,7 +17,7 @@ def get_item_cf():
 
     load_dotenv()
     # # 1. Load  dataset
-    file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
+    file_path = FILE_PATH / "ratings.dat"
     # Movielens 1M format: UserID::MovieID::Rating::Timestamp
     reader = Reader(
         line_format='user item rating timestamp',

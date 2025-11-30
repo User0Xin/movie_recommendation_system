@@ -8,6 +8,8 @@ import numpy as np
 import math
 from dotenv import load_dotenv
 
+from src.config import FILE_PATH
+
 
 def get_all_predictions(model, trainset):
     predictions = defaultdict(dict)
@@ -47,7 +49,7 @@ def get_all_user_top_k(predictions, K):
 def build_cf_predict():
     load_dotenv()
     # # 1. Load  dataset
-    file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
+    file_path = FILE_PATH / "ratings.dat"
     # Movielens 1M format: UserID::MovieID::Rating::Timestamp
     reader = Reader(
         line_format='user item rating timestamp',

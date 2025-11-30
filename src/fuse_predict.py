@@ -8,6 +8,7 @@ from surprise import Reader, Dataset
 from surprise.model_selection import train_test_split
 
 from models.cf import get_item_cf
+from src.config import FILE_PATH
 
 
 def get_all_predictions(trainset):
@@ -49,7 +50,7 @@ def get_all_user_top_k(predictions, K):
 def build_fuse_predict():
     load_dotenv()
     # 加载数据
-    file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
+    file_path = FILE_PATH / "ratings.dat"
     # Movielens 1M format: UserID::MovieID::Rating::Timestamp
     reader = Reader(
         line_format='user item rating timestamp',
