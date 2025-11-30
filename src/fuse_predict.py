@@ -58,9 +58,10 @@ def build_fuse_predict():
     )
     data = Dataset.load_from_file(file_path, reader=reader)
     trainset, _ = train_test_split(data, test_size=0.2, shuffle=True, random_state=42)
-
+    print("Building fused prediction model...")
     # 获取所有用户-物品预测评分
     predictions = get_all_predictions(trainset)
+    print("Fused prediction model built.")
     # 获取用户Top-20推荐列表
     fuse_top20 = get_all_user_top_k(predictions, 20)
     # 持久化保存
@@ -75,3 +76,7 @@ def fuse_recommend(uid, k):
         fuse_top20 = pickle.load(f)
     top_k = fuse_top20[uid][:k]
     return top_k
+
+if __name__ == '__main__':
+    build_fuse_predict()
+    print(fuse_recommend('1', 10))

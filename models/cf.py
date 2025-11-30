@@ -5,8 +5,14 @@ from dotenv import load_dotenv
 from surprise import Reader, Dataset, KNNBaseline
 from surprise.model_selection import train_test_split
 
+item_cf = None
+
 
 def get_item_cf():
+    global item_cf
+    if item_cf is not None:
+        return item_cf
+
     load_dotenv()
     # # 1. Load  dataset
     file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
@@ -27,6 +33,7 @@ def get_item_cf():
     item_cf.fit(trainset)
 
     return item_cf
+
 
 def get_user_top_k_by_userCF(uid, k):
     with open('../predicts/user_top20', 'rb') as f:  # 注意是二进制读取模式

@@ -75,18 +75,26 @@ def evaluate(top_k, true_items, K):
 
 
 if __name__ == '__main__':
-    K = 10
+    K = 20
+    #
+    # with open('../predicts/user_pred', 'rb') as f:  # 注意是二进制读取模式
+    #     user_pred = pickle.load(f)
+    # with open('../predicts/item_pred', 'rb') as f:  # 注意是二进制读取模式
+    #     item_pred = pickle.load(f)
+    #
+    # topk_user = get_all_user_top_k(user_pred, K)
+    # topk_item = get_all_user_top_k(item_pred, K)
+    #
+    # metrics_user = evaluate(topk_user, getTrueItem(), K)
+    # metrics_item = evaluate(topk_item, getTrueItem(), K)
 
-    with open('../predicts/user_pred', 'rb') as f:  # 注意是二进制读取模式
-        user_pred = pickle.load(f)
-    with open('../predicts/item_pred', 'rb') as f:  # 注意是二进制读取模式
-        item_pred = pickle.load(f)
+    # print("User-based CF Metrics:", metrics_user)
+    # print("Item-based CF Metrics:", metrics_item)
 
-    topk_user = get_all_user_top_k(user_pred, K)
-    topk_item = get_all_user_top_k(item_pred, K)
+    with open('../predicts/fuse_pred', 'rb') as f:  # 注意是二进制读取模式
+        fuse_pred = pickle.load(f)
 
+    topk_user = get_all_user_top_k(fuse_pred, K)
     metrics_user = evaluate(topk_user, getTrueItem(), K)
-    metrics_item = evaluate(topk_item, getTrueItem(), K)
-
     print("User-based CF Metrics:", metrics_user)
-    print("Item-based CF Metrics:", metrics_item)
+
