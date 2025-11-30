@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 @app.post("/recommendMovies")
-def get_user_movie_recommendation(uid: int):
+def get_user_movie_recommendation(uid: str):
     movie_dict = {}
     file_path = FILE_PATH / "movies.dat"
     with open(file_path, 'r', encoding='latin-1') as f:
@@ -25,8 +25,8 @@ def get_user_movie_recommendation(uid: int):
 
 
 @app.post("/agentQuery")
-def agentQuery(query: str, user_id):
-    agent = Agent(user_id)
+def agentQuery(query: str, uid: str):
+    agent = Agent(uid)
     return agent.query(query)
 
 
