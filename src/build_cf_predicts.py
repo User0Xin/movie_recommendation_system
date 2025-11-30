@@ -84,27 +84,7 @@ def build_cf_predict():
     with open('../predicts/item_top20', 'wb') as f:  # 注意是二进制写入模式
         pickle.dump(item_top20, f)
 
-def get_item_cf():
-    load_dotenv()
-    # # 1. Load  dataset
-    file_path = os.path.join(os.getenv('FILE_PATH'), "ratings.dat")
-    # Movielens 1M format: UserID::MovieID::Rating::Timestamp
-    reader = Reader(
-        line_format='user item rating timestamp',
-        sep='::',
-        rating_scale=(1, 5)
-    )
-    data = Dataset.load_from_file(file_path, reader=reader)
-    # train-test split
-    trainset, testset = train_test_split(data, test_size=0.2, shuffle=True, random_state=42)
-    sim_options_item = {
-        "name": "cosine",
-        "user_based": False
-    }
-    item_cf = KNNBaseline(sim_options=sim_options_item)
-    item_cf.fit(trainset)
 
-    return item_cf
 
 if __name__ == '__main__':
     build_cf_predict()
