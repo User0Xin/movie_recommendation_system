@@ -1,4 +1,6 @@
-from network_community_fast import predict
+from my_predict import predict
 
-score = predict(3826, 2848)  # 用户 4169 对电影 2858 的预测评分
+u = 4169
+m = 1898
+score = predict(u, m)  # 第一次会加载整张表，之后都是内存查表
 print(score)
